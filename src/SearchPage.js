@@ -1,29 +1,50 @@
 import React, { Component } from 'react';
-import Data from './pokemon.js';
 import PokeList from './PokeList';
 import Searchbar from './Searchbar.js';
 import './SearchPage.css';
+import request from 'superagent';
+import Spinner from './Spinner.js';
 
 export default class SearchPage extends Component {
   state = {
-    pokemon: Data,
+    pokemon: [],
     sortOrder: '',
     sortBy: 'pokemon',
     filter: '',
     query: '',
+    loading: false,
   };
 
-  handleClick = () => {
-    const filteredPokemon = Data.filter((pokemon) =>
-      pokemon.pokemon.includes(this.state.query)
-    );
-    filteredPokemon.sort((a, b) =>
-      a[this.state.sortBy].localeCompare(b[this.state.sortBy])
-    );
+  componentDidMount = async () => {
+    await this.fetchPokemon();
+  }
 
+  fetchPokemon = async () => {
     this.setState({
-      pokemon: filteredPokemon,
-    });
+      loading: true
+    })
+
+    const data = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${this.state.query}&sort=${this.state.sortBy}&perPage=30`);
+
+    console.log(data);
+    setTimeout(() => {
+      this.setState({
+        loading: false,
+        pokemon: data.body.results,
+      })
+    }, 5000)
+
+  }
+
+  handleClick = () => {
+    // const filteredPokemon = Data.filter((pokemon) =>
+    //   pokemon.pokemon.includes(this.state.query)
+    // );
+    // filteredPokemon.sort((a, b) =>
+    //   a[this.state.sortBy].localeCompare(b[this.state.sortBy])
+    // );
+    this.fetchPokemon();
+
   };
 
   handleChangeSortBy = (e) => {
@@ -40,6 +61,7 @@ export default class SearchPage extends Component {
 
   render() {
     return (
+      
       <div class='sortTools'>
         <div class='searchTool'>
         <Searchbar
@@ -49,7 +71,11 @@ export default class SearchPage extends Component {
         />
         <button onClick={this.handleClick}>List Pokemon!</button>
         </div>
-        <PokeList images={this.state.pokemon} />
+        {      
+          this.state.loading
+          ? <Spinner />:
+          <PokeList images={this.state.pokemon} />
+          }
       </div>
     );
   }
