@@ -1,0 +1,40 @@
+body{
+  background-color: rgb(238, 173, 34);
+}
+
+img{
+  width: 140px;
+  border: solid 1px;
+  background-color: burlywood;
+}
+
+li{
+  list-style: none;
+  border: solid 2px black;
+  margin: 3px;
+  padding: 5px;
+  background-color: coral;
+}
+
+ul{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  color: rgb(0, 0, 0);
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+}
+
+.sortTools{
+  display: flex;
+  justify-content: center;
+}
+
+.searchTool{
+  background-color: burlywood;
+}
+
+button{
+  height: 30px;
+}
