@@ -1,0 +1,19 @@
+.homePage{
+  height: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://cdn.bulbagarden.net/upload/c/ce/Galar_artwork.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.welcome{
+  display: flex;
+  border: solid 2px black;
+  background-color: cornsilk;
+  width: 330px;
+  font-size: 25px;
+  flex-wrap: wrap;
+  padding: 10px;
+}
