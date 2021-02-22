@@ -1,0 +1,23 @@
+body{
+  font-family: 'Courier New', Courier, monospace;
+}
+
+
+.details{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px black;
+  background-color: coral;
+  width: fit-content;
+  padding: 10px;
+  margin: auto;
+}
+
+.detailHead{
+text-align: center;
+}
+
+.detailItem{
+  text-align: center;
+}

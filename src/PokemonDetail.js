@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import request from 'superagent';
 import Spinner from './Spinner.js';
+import './PokemonDetails.css';
+
 
 export default class PokemonDetail extends Component {
   state = {
@@ -22,23 +24,24 @@ export default class PokemonDetail extends Component {
 
   render() {
     return (
+      
       <div>
-        Currently the detail page
-        {
-          this.state.loading 
-            ? <Spinner />
-            : <div>
-                <img src={this.state.pokemon.url_image} alt="pokemon" />
-                <p>{this.state.pokemon.pokemon}</p>
-                <p>{this.state.pokemon.attack}</p>
-                <p>{this.state.pokemon.defense}</p>
-                <p>{this.state.pokemon.type_1}</p>
-                <p>{this.state.pokemon.type_2}</p>
-                <p>{this.state.pokemon.shape}</p>
-                <p>{this.state.pokemon.ability_1}</p>
-                <p>{this.state.pokemon.ability_2}</p>
-            </div>
-        }
+        <h1 class='detailHead'>Details Page</h1>
+        	<div class='details'>
+            {
+              this.state.loading
+                ? <Spinner />
+                : <div class='detailItem'>
+                    <img src={this.state.pokemon.url_image} alt="pokemon" />
+                    <p>Name: {this.state.pokemon.pokemon}</p>
+                    <p>Attack: {this.state.pokemon.attack}</p>
+                    <p>Defense: {this.state.pokemon.defense}</p>
+                    <p>Type: {this.state.pokemon.type_1} / {this.state.pokemon.type_2}</p>
+                    <p>{this.state.pokemon.shape}</p>
+                    <p>Abilities: {this.state.pokemon.ability_1} / {this.state.pokemon.ability_2}</p>
+                </div>
+            }
+          </div>
       </div>
     )
   }
